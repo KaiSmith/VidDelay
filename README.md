@@ -2,13 +2,13 @@ VidDelay takes webcam footage and plays it back at a delay. This is useful for p
 
 ##How to use
 ###Settings:
-*-o for the prefix for saved video files
-*-d for the number of frames the video is delayed by
-*-s for the number of frames stored for saving
+* -o for the prefix for saved video files
+* -d for the number of frames the video is delayed by
+* -s for the number of frames stored for saving
 
 ###Commands:
-*Press 'q' to quit the program
-*press 's' to save the video
+* Press 'q' to quit the program
+* press 's' to save the video
 
 ##Dependencies:
-*opencv
+* opencv
