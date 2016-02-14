@@ -5,6 +5,8 @@ import numpy as np
 import time, datetime
 from optparse import OptionParser
 from Queue import Queue
+import webserver
+import threading
 
 parser = OptionParser()
 parser.add_option("-o", "--output", dest="filename", default = "VD", help="video output prefix")
@@ -21,6 +23,9 @@ cap = cv2.VideoCapture(0)
 w=int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_WIDTH ))
 h=int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT ))
 fourcc = cv2.cv.CV_FOURCC(*'XVID')
+
+thr = threading.Thread(target=webserver.run)
+thr.start()
 
 cv2.namedWindow("Instant Replay", cv2.WINDOW_NORMAL)
 
@@ -48,7 +53,8 @@ while(True):
     k = cv2.waitKey(waittime)
     
     #Save Video when 's' is pressed
-    if k & 0xFF == ord('s'):
+    #if k & 0xFF == ord('s'):
+    if webserver.getstatus():
         if save.qsize() > 10:
             print(str(save.qsize())+" frames to save...")
             timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
@@ -68,5 +74,6 @@ while(True):
         break
 
 # When everything done, release the capture
+webserver.kill()
 cap.release()
 cv2.destroyAllWindows()
