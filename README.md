@@ -9,6 +9,7 @@ VidDelay takes webcam footage and plays it back at a delay. This is useful for p
 ###Commands:
 * Press 'q' to quit the program
 * press 's' to save the video
+* press 'f' to view the feed frame by frame (step through frames by hitting any key)
 
 ##Dependencies:
 * opencv

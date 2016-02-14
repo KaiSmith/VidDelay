@@ -24,6 +24,7 @@ fourcc = cv2.cv.CV_FOURCC(*'XVID')
 
 cv2.namedWindow("Instant Replay", cv2.WINDOW_NORMAL)
 
+waittime = 1
 lastsave = 0
 while(True):
     # Capture frame-by-frame
@@ -44,7 +45,7 @@ while(True):
         save.get()
 
     #Read keypress
-    k = cv2.waitKey(1)
+    k = cv2.waitKey(waittime)
     
     #Save Video when 's' is pressed
     if k & 0xFF == ord('s'):
@@ -58,6 +59,9 @@ while(True):
             out.release()
             print("Done Saving")
             lastsave = time.time()
+
+    if k & 0xFF == ord('f'):
+        waittime = (waittime+1)%2
 
     #Quit when 'q' is pressed
     if k & 0xFF == ord('q'):
