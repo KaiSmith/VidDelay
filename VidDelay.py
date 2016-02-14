@@ -52,9 +52,8 @@ while(True):
     #Read keypress
     k = cv2.waitKey(waittime)
     
-    #Save Video when 's' is pressed
-    #if k & 0xFF == ord('s'):
-    if webserver.getstatus():
+    #Save Video when 's' is pressed or online button is pressed
+    if webserver.getstatus() or (k & 0xFF == ord('s')):
         if save.qsize() > 10:
             print(str(save.qsize())+" frames to save...")
             timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
